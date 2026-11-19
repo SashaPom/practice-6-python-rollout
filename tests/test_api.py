@@ -43,7 +43,7 @@ def get_json(origin, path):
     "path, code, body",
     [
         ("/health", 200, {"status": "ok"}),
-        ("/version", 200, {"version": "unit-42"}),
+        ("/version", 201, {"version": "unit-42"}),
         ("/unknown", 404, {"error": "not found"}),
     ],
 )
