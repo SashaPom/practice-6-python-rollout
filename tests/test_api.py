@@ -75,3 +75,9 @@ def test_invalid_environment_is_rejected(monkeypatch, name, value):
     monkeypatch.setenv(name, value)
     with pytest.raises(ValueError, match=name):
         Settings.from_env()
+
+
+def test_version_comes_from_environment(api, monkeypatch):
+    monkeypatch.setenv("APP_VERSION", "preview-7")
+    with api() as origin:
+        assert get_json(origin, "/version") == (200, {"version": "preview-7"})
